@@ -1,0 +1,75 @@
+export const CATEGORIES = [
+    'Malarstwo',
+    'Rzeźba',
+    'Grafika',
+    'Fotografia',
+    'Instalacja',
+    'Rysunek',
+    'Akwarela',
+    'Pastel',
+    'Kolaż',
+    'Ceramika',
+    'Tekstylia',
+    'Sztuka cyfrowa',
+];
+
+export const STYLES = [
+    'Abstrakcja',
+    'Realizm',
+    'Impresjonizm',
+    'Surrealizm',
+    'Minimalizm',
+    'Ekspresjonizm',
+    'Kubizm',
+    'Pop-art',
+    'Sztuka konceptualna',
+    'Realizm magiczny',
+    'Symbolizm',
+    'Modernizm',
+];
+
+export const THEMES = [
+    'Portret',
+    'Pejzaż',
+    'Martwa natura',
+    'Abstrakcja',
+    'Architektura',
+    'Natura',
+    'Zwierzęta',
+    'Ludzie',
+    'Miasto',
+    'Wnętrza',
+    'Kwiaty',
+    'Morze',
+];
+
+export const MEDIUMS = [
+    'Olej na płótnie',
+    'Akryl',
+    'Akwarela',
+    'Mieszana',
+    'Rysunek',
+    'Grafika',
+    'Fotografia',
+    'Ceramika',
+    'Brąz',
+    'Kamień',
+    'Drewno',
+    'Metal',
+    'Szkło',
+    'Tkanina',
+    'Papier',
+    'Pigment',
+];
+
+export const DIMENSIONS = [
+    '30x40 cm',
+    '40x50 cm',
+    '50x70 cm',
+    '70x100 cm',
+    '80x100 cm',
+    '100x120 cm',
+    '100x150 cm',
+    '120x150 cm',
+    '150x200 cm',
+];

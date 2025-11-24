@@ -22,6 +22,8 @@ class User extends Authenticatable
         'name',
         'email',
         'password',
+        'role',
+        'gallery_id',
     ];
 
     /**
@@ -45,5 +47,30 @@ class User extends Authenticatable
             'email_verified_at' => 'datetime',
             'password' => 'hashed',
         ];
+    }
+
+    public function gallery(): \Illuminate\Database\Eloquent\Relations\HasOne
+    {
+        return $this->hasOne(Gallery::class);
+    }
+
+    public function savedArtworks(): \Illuminate\Database\Eloquent\Relations\HasMany
+    {
+        return $this->hasMany(SavedArtwork::class);
+    }
+
+    public function isAdmin(): bool
+    {
+        return $this->role === 'admin';
+    }
+
+    public function isGallery(): bool
+    {
+        return $this->role === 'gallery';
+    }
+
+    public function isClient(): bool
+    {
+        return $this->role === 'client';
     }
 }

@@ -45,7 +45,11 @@ class AuthenticatedSessionController extends Controller
 
         $request->session()->regenerate();
 
-        return redirect()->intended(route('dashboard', absolute: false));
+        return redirect()->intended('/catalog')
+            ->with('toast', [
+                'type' => 'success',
+                'message' => 'Welcome back! You have been successfully logged in.',
+            ]);
     }
 
     /**
@@ -58,6 +62,10 @@ class AuthenticatedSessionController extends Controller
         $request->session()->invalidate();
         $request->session()->regenerateToken();
 
-        return redirect('/');
+        return redirect('/')
+            ->with('toast', [
+                'type' => 'success',
+                'message' => 'You have been successfully logged out.',
+            ]);
     }
 }
