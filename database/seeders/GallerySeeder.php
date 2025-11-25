@@ -13,46 +13,28 @@ class GallerySeeder extends Seeder
      */
     public function run(): void
     {
-        $galleryUsers = User::where('role', 'gallery')->get();
+        // Get the two gallery users (IDs 2 and 3)
+        $galleryUser1 = User::where('email', 'gallery1@example.com')->first();
+        $galleryUser2 = User::where('email', 'gallery2@example.com')->first();
 
-        $galleriesData = [
-            [
-                'name' => 'Galeria Sztuki Współczesnej',
-                'description' => 'Wiodąca galeria prezentująca najnowsze trendy w sztuce współczesnej.',
-                'is_approved' => true,
-                'approved_at' => now(),
-            ],
-            [
-                'name' => 'Salon Artystyczny',
-                'description' => 'Kameralna przestrzeń dla miłośników sztuki klasycznej i nowoczesnej.',
-                'is_approved' => true,
-                'approved_at' => now(),
-            ],
-            [
-                'name' => 'Galeria Malarstwa',
-                'description' => 'Specjalizujemy się w prezentacji dzieł malarskich różnych epok.',
-                'is_approved' => false,
-            ],
-            [
-                'name' => 'Przestrzeń Sztuki',
-                'description' => 'Nowoczesna galeria promująca młodych artystów.',
-                'is_approved' => false,
-            ],
-            [
-                'name' => 'Galeria Kreativa',
-                'description' => 'Miejsce spotkania sztuki tradycyjnej z nowymi mediami.',
-                'is_approved' => true,
-                'approved_at' => now(),
-            ],
-        ];
+        // Gallery 1 - Approved
+        Gallery::create([
+            'user_id' => $galleryUser1->id,
+            'name' => 'Galeria Sztuki Współczesnej',
+            'description' => 'Wiodąca galeria prezentująca najnowsze trendy w sztuce współczesnej.',
+            'is_approved' => true,
+            'approved_at' => now(),
+            'status' => 'active',
+        ]);
 
-        foreach ($galleriesData as $index => $galleryData) {
-            if (isset($galleryUsers[$index])) {
-                Gallery::create([
-                    'user_id' => $galleryUsers[$index]->id,
-                    ...$galleryData,
-                ]);
-            }
-        }
+        // Gallery 2 - Approved
+        Gallery::create([
+            'user_id' => $galleryUser2->id,
+            'name' => 'Damian Gallery',
+            'description' => 'Gallery for Damian',
+            'is_approved' => true,
+            'approved_at' => now(),
+            'status' => 'active',
+        ]);
     }
 }

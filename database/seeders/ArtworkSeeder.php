@@ -14,71 +14,31 @@ class ArtworkSeeder extends Seeder
      */
     public function run(): void
     {
+        // Get all artists and galleries
         $artists = Artist::all();
-        $galleries = Gallery::where('is_approved', true)->get();
+        $galleries = Gallery::all();
 
         $categories = ['Malarstwo', 'Rzeźba', 'Grafika', 'Fotografia', 'Instalacja'];
         $styles = ['Abstrakcja', 'Realizm', 'Impresjonizm', 'Surrealizm', 'Minimalizm'];
-        $themes = ['Portret', 'Peizaż', 'Martwa natura', 'Abstrakcja', 'Architektura'];
-        $mediums = ['Olej na płótnie', 'Akryl', 'Akwarela', 'Ryśunek', 'Mieszana'];
+        $themes = ['Portret', 'Pejzaż', 'Martwa natura', 'Abstrakcja', 'Architektura'];
+        $mediums = ['Olej na płótnie', 'Akryl', 'Akwarela', 'Rysunek', 'Mieszana'];
 
-        $artworksData = [
-            'Zachwód słońca',
+        // 10 artworks
+        $artworks = [
+            'Zachód słońca',
             'Miejskie refleksje',
             'Abstrakcyjne emocje',
             'Portret w złocie',
-            'Morski peizaż',
+            'Morski pejzaż',
             'Taniec kolorów',
             'Cisza gór',
             'Rytm miasta',
             'Wspomnienia lata',
             'Medytacja',
-            'Burza nad morzem',
-            'Geometria natury',
-            'Tajemniczy las',
-            'Architektura duszy',
-            'Harmonia',
-            'Kontrast',
-            'Energia',
-            'Spokoj',
-            'Dynamika',
-            'Retrospekcja',
-            'Przyszłość',
-            'Czas',
-            'Przestrzeń',
-            'Ruch',
-            'Cisza',
-            'Głos',
-            'Cienie',
-            'Światło',
-            'Mrok',
-            'Jasność',
-            'Uczucia',
-            'Myśli',
-            'Marzenia',
-            'Rzeczywistość',
-            'Wyobraźnia',
-            'Intuicja',
-            'Logika',
-            'Chaos',
-            'Porządek',
-            'Wolność',
-            'Więzy',
-            'Migracja',
-            'Podroż',
-            'Dom',
-            'Obcość',
-            'Znajomość',
-            'Tożsamość',
-            'Transformacja',
-            'Ewolucja',
-            'Rewolucja',
         ];
 
-        foreach ($artworksData as $index => $title) {
-            if ($index >= 50) {
-                break;
-            } // Limit to 50 artworks
+        foreach ($artworks as $index => $title) {
+            $isApproved = $index < 7; // First 7 approved, last 3 pending
 
             Artwork::create([
                 'title' => $title,
@@ -94,8 +54,8 @@ class ArtworkSeeder extends Seeder
                     '30x40 cm', '50x70 cm', '80x100 cm', '100x120 cm', '40x50 cm',
                 ]),
                 'description' => fake()->paragraph(3),
-                'is_approved' => fake()->boolean(80), // 80% chance of being approved
-                'approved_at' => fake()->boolean(80) ? now() : null,
+                'is_approved' => $isApproved,
+                'approved_at' => $isApproved ? now() : null,
             ]);
         }
     }

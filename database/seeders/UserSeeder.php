@@ -13,7 +13,7 @@ class UserSeeder extends Seeder
      */
     public function run(): void
     {
-        // Admin user
+        // 1. Admin user
         User::create([
             'name' => 'Admin User',
             'email' => 'admin@example.com',
@@ -22,29 +22,35 @@ class UserSeeder extends Seeder
             'email_verified_at' => now(),
         ]);
 
-        // Gallery users
-        $galleryUsers = [
-            ['name' => 'Galeria Sztuki Współczesnej', 'email' => 'wspolczesna@example.com'],
-            ['name' => 'Salon Artystyczny', 'email' => 'salon@example.com'],
-            ['name' => 'Galeria Malarstwa', 'email' => 'malarstwo@example.com'],
-            ['name' => 'Przestrzeń Sztuki', 'email' => 'przestrzen@example.com'],
-            ['name' => 'Galeria Kreativa', 'email' => 'kreativa@example.com'],
-        ];
-
-        foreach ($galleryUsers as $userData) {
-            User::create([
-                'name' => $userData['name'],
-                'email' => $userData['email'],
-                'password' => Hash::make('password'),
-                'role' => 'gallery',
-                'email_verified_at' => now(),
-            ]);
-        }
-
-        // Test client user
+        // 2-3. Gallery users (2 users)
         User::create([
-            'name' => 'Test Client',
-            'email' => 'client@example.com',
+            'name' => 'Galeria Sztuki Współczesnej',
+            'email' => 'gallery1@example.com',
+            'password' => Hash::make('password'),
+            'role' => 'gallery',
+            'email_verified_at' => now(),
+        ]);
+
+        User::create([
+            'name' => 'Damian Gallery',
+            'email' => 'gallery2@example.com',
+            'password' => Hash::make('password'),
+            'role' => 'gallery',
+            'email_verified_at' => now(),
+        ]);
+
+        // 4-5. Normal client users (2 users)
+        User::create([
+            'name' => 'Jan Kowalski',
+            'email' => 'jan@example.com',
+            'password' => Hash::make('password'),
+            'role' => 'client',
+            'email_verified_at' => now(),
+        ]);
+
+        User::create([
+            'name' => 'Anna Nowak',
+            'email' => 'anna@example.com',
             'password' => Hash::make('password'),
             'role' => 'client',
             'email_verified_at' => now(),
